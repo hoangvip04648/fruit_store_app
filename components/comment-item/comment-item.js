@@ -4,14 +4,7 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image,
-  Alert,
-  ScrollView,
-  FlatList,
-  Button,
-  TextInput,
-  Modal,
-  TouchableHighlight
+  Image
 } from 'react-native';
 
 export default function CommentItem(props) {
@@ -20,7 +13,7 @@ export default function CommentItem(props) {
     const [visible,setVisible] = useState(false);
     useEffect(()=>{
         setComment(props.comment);
-    })
+    },[props.comment])
 
     function deleteComment(){
         setVisible(false);
@@ -55,15 +48,13 @@ const styles=StyleSheet.create({
         paddingBottom:5,
         display:"flex",
         flexDirection:"row",
-        height:80,
+        height:100,
         borderRadius:10,
-        marginBottom:10,
-        shadowOffset: { width: 1, height: 1 },
-        shadowOpacity: 0.8,
-        shadowRadius: 10,  
-        elevation: 1,
+        marginBottom:5,
+        borderWidth:1,
+        borderColor:'#ddd',
         borderRadius:10,
-        backgroundColor:'rgba(255,255,255,1)'
+        paddingLeft:10,
     },
     AvatarCommenterContainer:{
         flex:1,
@@ -93,6 +84,9 @@ const styles=StyleSheet.create({
         color:'gray',
         textAlign:"right",
         paddingRight:10,
+        bottom:0,
+        right:0,
+        position:'absolute'
     }
 
 });

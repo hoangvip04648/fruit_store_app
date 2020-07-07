@@ -6,7 +6,7 @@ export default function ProductItem(props){
     const [productInformation,setProduct]=useState(props.product);
     useEffect(()=>{
         setProduct(props.product);
-    })
+    },[props.product])
     const ratingCompleted=(rate)=>{
         console.log(rate);
     }

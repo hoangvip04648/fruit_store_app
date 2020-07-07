@@ -7,10 +7,14 @@ import {
   Text,
   View,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  Alert,
+  TextInput
 } from 'react-native';
 import {styles} from './stylesheet'
 import ListComment from '../list-comment/list-comment'
+import { Input } from 'native-base';
+
 
 export default function ProductInformation(props) {
     const [product,setProduct]=useState(props.productInformation)
@@ -21,7 +25,6 @@ export default function ProductInformation(props) {
     const [color,setColor] = useState(['white','white','white','white']);
     const [dvt,setDvt] = useState("");
     useEffect(()=>{
-        console.log(product.type)
         if(product.type == 'trai-cay'||product.type=='rau-cu')
         {
             setDvt('kg');
@@ -47,6 +50,21 @@ export default function ProductInformation(props) {
         setColor(newColor);
     }
 
+    
+    function incItem(){
+        setNumberItem(numberItem+1);
+        
+    }
+    function redItem(){
+        if(numberItem == 1 ){
+            
+        }else{
+            setNumberItem(numberItem-1);
+           
+            
+        }
+    }
+
     const setStorage=async ()=>{
         if(numberItem == 0)
         {
@@ -54,6 +72,7 @@ export default function ProductInformation(props) {
         }
         else
         {
+            
             const ListProduct = await AsyncStorage.getItem('ListProduct');
             if(ListProduct==null){
                 var newProduct={
@@ -99,7 +118,10 @@ export default function ProductInformation(props) {
        
     }
 
-
+    const parseMoney =  (value)=>{
+        return value.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,').split('.')[0];
+    }
+    
     const ratingCompleted=(rate)=>{
         axios.post(`${rootUrl}/vote`,{
             idUser:globalState.user._id,
@@ -134,10 +156,14 @@ export default function ProductInformation(props) {
       <View style={styles.container}>
         
             <View style={{alignItems:'center', marginHorizontal:30}}>
-                <Text style={styles.name}>Trái {product.name}</Text>
-                <Text style={styles.price}>Giá: {product.price}đ</Text>
+                <Text style={styles.name}>{product.name}</Text>
+                <Text style={styles.price}>Giá: {parseMoney(product.price)} đ</Text>
                 <Text style={styles.description}>
                     {product.description}
+
+
+
+                    {/* xu ly */}
                 </Text>
             </View>
             <View>
@@ -196,20 +222,24 @@ export default function ProductInformation(props) {
                 type='star'
                 ratingCount={5}
                 imageSize={30}
-               
                 onFinishRating={(rate)=>ratingCompleted(rate)}
                 defaultRating={2}
                 startingValue={rateUser}
                 />
             </View>
             <View style={styles.contentSize}>
-                 <TouchableOpacity onPress={()=>handlePressBtn(1)} style={styles.btnSize}><Text style={{color:color[0],fontWeight:'bold'}}>1</Text></TouchableOpacity> 
-                <TouchableOpacity onPress={()=>handlePressBtn(2)} style={styles.btnSize}><Text style={{color:color[1],fontWeight:'bold'}}>2</Text></TouchableOpacity> 
-                <TouchableOpacity onPress={()=>handlePressBtn(3)} style={styles.btnSize}><Text style={{color:color[2],fontWeight:'bold'}}>3</Text></TouchableOpacity> 
-                <TouchableOpacity onPress={()=>handlePressBtn(4)} style={styles.btnSize}><Text style={{color:color[3],fontWeight:'bold'}}>4</Text></TouchableOpacity> 
+                <TouchableOpacity style={styles.reduction} onPress={redItem}>
+                    <Text>-</Text>
+                </TouchableOpacity>
+                <TextInput editable={false} style={styles.inputNumberItem} onChangeText={(value)=>{if(Number.isInteger(parseInt(value))  && parseInt(value)>0){setNumberItem(parseInt(value))}else{setNumberItem(0)}}} >
+                    <Text>{numberItem}</Text>
+                </TextInput>
+                <TouchableOpacity  onPress={incItem} style={styles.increase}>
+                     <Text>+</Text>
+                </TouchableOpacity>
                   
             </View>
-            <Text style={{alignSelf:'center',paddingTop:5}}>(Đơn vị:{dvt})</Text>
+            <Text style={{alignSelf:'center',paddingTop:5}}>(Đơn vị: {dvt})</Text>
             <View style={styles.addToCarContainer}>
                 <TouchableOpacity onPress={setStorage} style={styles.shareButton}>
                     <Text style={styles.AddButtonText}>Thêm Vào Giỏ</Text>  

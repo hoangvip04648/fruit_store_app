@@ -9,7 +9,7 @@ export const ReferenceDetail= (props) =>{
     const [content,setContent] = useState(reference.content || []);
     useEffect(()=>{
       setReference(props.reference);
-    })
+    },[props.reference])
     return(
       <View style={{paddingLeft:10,paddingRight:10}}>
         <Text style={styles.title}>{reference.title}</Text>

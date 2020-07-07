@@ -7,13 +7,13 @@ export const styles= StyleSheet.create({
     },
     productItemContainer:{
      
-        paddingLeft:10,
-        paddingRight:10,
+        paddingLeft:5,
+        paddingRight:5,
         paddingTop:10
     },
     headerContainer:{
         paddingTop:20,
-        paddingLeft:10,
+        paddingLeft:5,
     },
     headerText:{
         fontSize:18,

@@ -9,7 +9,7 @@ export default function ReferenceItem(props){
        
         setReference(props.reference)
        
-    })
+    },[props.reference])
     return(
         <View style={styles.container}>
             <View style={styles.imageContainer}>
@@ -42,13 +42,13 @@ const styles= StyleSheet.create({
     imageContainer:{
         height:110,
         flex:1,
-        padding:10
+        padding:10,
     },
     productInformationContainer:{
         flex:3,
         paddingLeft:10,
         paddingRight:13,
-        paddingTop:10
+        paddingTop:10,
     },
     image:{
         height:"100%",
@@ -56,9 +56,9 @@ const styles= StyleSheet.create({
         resizeMode:'contain'
     },
     productInformation:{
-        height:"100%",
         flexDirection:"column",
-        justifyContent:"flex-start"
+        justifyContent:"flex-start",
+        paddingBottom:10
     },
     headerInformation:{
         fontSize:17,

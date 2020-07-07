@@ -4,7 +4,7 @@ export const styles= StyleSheet.create({
     container:{
         flexDirection:"column",
         paddingLeft:5,
-        paddingRight:10,
+        paddingRight:10
     },
     productItemContainer:{
         paddingTop:8,

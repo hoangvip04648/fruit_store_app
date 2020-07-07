@@ -54,9 +54,6 @@ const SignUp =  (props) => {
         setIsValid(false);
       }
   }
-  useEffect(()=>{
-    
-  })
     const mess=<Text style={{textAlign:'center',color:"red",fontWeight:'bold'}}>Mật khẩu không trùng khớp</Text>;
     const messageRes=<Text style={{textAlign:'center',color:color,fontWeight:'bold'}}>{message}</Text>
     return (

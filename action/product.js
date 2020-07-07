@@ -14,6 +14,10 @@ export const getListProduct = (store) => {
     })
 }
 
+export const parseMoney =  (value)=>{
+    return value.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
+
 export const updateProduct = (store,idProduct) => {
     axios.get(`${rootUrl}/san-pham/`+idProduct)
     .then(res => {
@@ -25,6 +29,11 @@ export const updateProduct = (store,idProduct) => {
     .catch(err => {
         console.log(err);
     })
+}
+
+export const changeNumberItemCart = (store)=>{
+    AsyncStorage.removeItem('ListProduct');
+    store.setState({numberItem:0});
 }
 
 export const getNumberItemInCart = (store) => {

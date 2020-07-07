@@ -100,6 +100,8 @@ export const updateUser = (store,data)=>{
                                 }
                                 else
                                 {
+
+                                   
                                     AsyncStorage.getItem('user', (err, result1) => {
                                         store.setState({user:JSON.parse(result1)});
                                         Alert.alert("Thông báo","Cập nhật thành công")

@@ -23,10 +23,10 @@ const styles = StyleSheet.create({
         justifyContent:'space-around'
     },
     rowThree :{
-        backgroundColor:'white',marginBottom:5,marginLeft:10,marginRight:10,padding:10,borderRadius:10
+        backgroundColor:'white',marginBottom:10,marginLeft:10,marginRight:10,padding:10,borderRadius:10
     },
     rowFour : {
-        flex:1,backgroundColor:'white',paddingLeft:20,marginLeft:10,marginRight:10,borderTopRightRadius:5,borderTopLeftRadius:5
+        flex:1,backgroundColor:'white',paddingLeft:10,marginLeft:10,marginRight:10,borderTopRightRadius:5,borderTopLeftRadius:5
     },
     rowFive : {
         flex:1,backgroundColor:'white',paddingLeft:20,flexDirection:'row',marginLeft:10,marginRight:10,marginBottom:10,borderBottomRightRadius:5,borderBottomLeftRadius:5

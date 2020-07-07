@@ -12,11 +12,11 @@ export default function ListProduct(props){
     useEffect(()=>{
         setProduct(props.ListProduct);
        
-    });
+    },[props.ListProduct]);
     return(
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <Text style={styles.headerText}>Sản phẩm bán chạy:</Text>
+    <Text style={styles.headerText}>Danh sách sản phẩm</Text>
             </View>
             
                 <View>

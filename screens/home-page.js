@@ -19,10 +19,10 @@ export default function Home(props) {
     const [category, setCategory]  = useState([]);
     const [slideImage,setSlideImage]=useState(
         [
-            "0AIMqh9jJmeA5dbkRSfZ.jpg",
-            "zvswRzgRsSvpcgGbrKaU.jpg",
-            "yL5pjzzMNixDJIyZ4x6d.jpg",
-            "J4sCoUqxG9YTvE8vqF7o.jpg"                               
+            "anh1.jpg",
+            "anh2.jpg",
+            "anh3.jpg",
+            "anh4.jpg"                               
         ]
                             );
     useEffect(()=>{
@@ -47,31 +47,32 @@ export default function Home(props) {
             globalAction.product.getListProduct();
             axios.get(`${rootUrl}/mobile/tham-khao`)
             .then(res=>{
-              
+                console.log(res.data);
                 setReferences(res.data)
             })
             .catch(err =>{
                 console.log(err);
             })
         globalAction.product.getNumberItemInCart();
+        
 
     },[]);
 
     return (
      
-        <View style={{flex:1,flexDirection:"column",display:"flex",backgroundColor:'#ECF3FF'}}>
+        <View style={{flex:1,flexDirection:"column",display:"flex",backgroundColor:'#f5f5f5'}}>
             <View>
-                <Menu navigation={props.navigation} title="Trang Chủ"/>
+                <Menu navigation={props.navigation}  isBack={false}/>
             </View>
             <ScrollView>
                 <View style={{flex:1}} navigation={props.navigation}>
                     <Slider images={slideImage} />
                 </View>
-                <View style={{flex:3}}>
-                    <ListCategory data = {category} navigation={props.navigation} />
+                <View style={{flex:3,marginTop:10}}>
+                    <ListCategory data = {category} navigation={props.navigation} isBack={true} />
                 </View>
                 <View style={{flex:3}}>
-                    <ListProduct ListProduct={globalState.products} navigation={props.navigation} />
+                    <ListProduct isHome={true} ListProduct={globalState.products} navigation={props.navigation} isBack={true}/>
                 </View>
                 <View style={{flex:3}}>
                     <ListReference references={references} navigation={props.navigation} />

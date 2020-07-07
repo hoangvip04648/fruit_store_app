@@ -1,14 +1,7 @@
 import React, { Component,useState,useEffect} from 'react';
 import {
-  Text,
   View,
-  TouchableOpacity,
-  Image,
-  Alert,
   ScrollView,
-  FlatList,
-  Button,
-  TextInput
 } from 'react-native';
 import {ReferenceDetail} from '../components/reference-detail/reference-detail';
 import Menu from '../components/menu/Menu';
@@ -19,7 +12,7 @@ function ReferenceDetailScreen(props) {
     useEffect(()=>{
       setReference(navigation.getParam('reference'));
   
-    })
+    },[])
     return (
         <View style={{display:'flex',flex:1}}>
           <Menu navigation = {props.navigation} title="Tham khảo" isBack = {true}/>

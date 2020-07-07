@@ -7,7 +7,7 @@ export const Slider = (props) => {
     const [entries,setEntries] = useState([]);
     useEffect(()=>{
         setEntries(props.images)
-    })
+    },[props.images])
     const carouselRef = useRef(null)
 
     const goForward = () => {
@@ -18,15 +18,12 @@ export const Slider = (props) => {
         return (
             <View style={styles.item}>
                 <ParallaxImage
-                    source={{uri:`${rootUrl}/product-image/${item}`}||{uri:item}}
+                    source={{uri:props.title == 'productDetail'? `${rootUrl}/product-image/${item}`:`${rootUrl}/slide_image/${item}`}}
                     containerStyle={styles.imageContainer}
                     style={styles.image}
                     parallaxFactor={0.4}
                     {...parallaxProps}
                 />
-                <Text style={styles.title} numberOfLines={2}>
-               
-                </Text>
             </View>
         );
     }
@@ -57,16 +54,15 @@ const styles = StyleSheet.create({
         elevation:1
     },
     item: {
-    alignSelf:'center',
-      width: screenWidth-10,
-      height: screenWidth-60,
+        alignSelf:'center',
+        width: screenWidth,
+        height: screenWidth,
      
     },
     imageContainer: {
       flex: 1,
       marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
       backgroundColor: 'white',
-      borderRadius: 8,
       shadowColor: "#000",
       shadowOffset: {
           width: 0,

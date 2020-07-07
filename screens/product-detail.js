@@ -1,16 +1,9 @@
-import React, { Component,useState,useEffect} from 'react';
+    import React, { Component,useState,useEffect} from 'react';
 import {
   Text,
   View,
-  TouchableOpacity,
-  Image,
-  Alert,
   ScrollView,
-  FlatList,
-  Button,
-  TextInput,
-  Dimensions
-} from 'react-native';
+    } from 'react-native';
 import Menu from '../components/menu/Menu';
 import {Slider} from '../components/carousel/carousel';
 import ListProduct from '../components/list-product/list-product';
@@ -27,7 +20,7 @@ function ProductDetail(props) {
             </View>
             <ScrollView style={{backgroundColor:'#ECF3FF'}}>
                 <View style={{flex:1}}>
-                    <Slider images={product.image} navigation={props.navigation}/>
+                    <Slider images={product.image} navigation={props.navigation} title="productDetail"/>
                 </View>
                 <View style={{flex:3}}>
                     <ProductInformation productInformation={product} navigation={props.navigation} />

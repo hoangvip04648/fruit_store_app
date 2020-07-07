@@ -5,9 +5,10 @@ import {
   TouchableOpacity,
   Image,
   AsyncStorage,
-  ImageBackground
+  ImageBackground,
+  TouchableHighlight
 } from 'react-native';
-import {Badge} from 'native-base';
+import {Badge, Button} from 'native-base';
 import {styles} from './stylesheet'
 
 import  useGlobal  from "../../store";
@@ -16,11 +17,17 @@ export default function Menu(props) {
     const [displayMenu,setDisplayMenu] = useState(false);
     const [ globalState, globalAction ] = useGlobal();
     const {navigate} = props.navigation;
-    const [isBack,setIsBack] = useState(props.isBack || false);
+    const [isBack,setIsBack] = useState(props.isBack);
 
     useEffect(()=>{
         setIsBack(props.isBack);
-    },[])
+    },[props.isBack])
+
+    const LogOut = ()=>{           
+       
+        setDisplayMenu(false);  
+        props.navigation.navigate('Home');
+    }
 
     function handleDisplayMenu(){ 
         displayMenu ? setDisplayMenu(false) : setDisplayMenu(true);
@@ -47,10 +54,13 @@ export default function Menu(props) {
                 <TouchableOpacity >
                     <Text style={styles.menuItem}>Hỗ trợ</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress = {() => props.navigation.navigate('Home')}>
+                <TouchableOpacity onPress = {LogOut}>
                     <Text style={styles.menuItem}>Về trang chủ</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress = {() =>{AsyncStorage.removeItem('user').then(val=>{props.navigation.navigate('Login')}).catch(err=>console.log(err))}}>
+                <TouchableOpacity onPress = {() =>{
+                    setDisplayMenu(false);
+                    AsyncStorage.removeItem('user').then(val=>{props.navigation.navigate('Login')})
+                    .catch(err=>console.log(err))}}>
                     <Text style={styles.menuItem}>Đăng xuất</Text>
                 </TouchableOpacity>
             </View>
@@ -59,16 +69,19 @@ export default function Menu(props) {
                
             </TouchableOpacity>
 
-    const goBack =  <TouchableOpacity onPress={()=>props.navigation.goBack()}>
-    <Image source ={{uri:'https://www.pngix.com/pngfile/middle/339-3394476_arrow-icons-png-free-arrow-back-icon-png.png'}} style={styles.iconBack}/>
- </TouchableOpacity> 
+    const goBack =  <TouchableOpacity  onPress={()=>props.navigation.goBack()}>
+                         <Image style={{backgroundColor:'black'}} source ={require('../../public/icon/iconBack.jpg')} style={styles.iconBack}/>
+                    </TouchableOpacity> 
 
     return (
         <View style={styles.menuContainer}>
             
-            <View style={styles.searchContainer}>
+            <View style={styles.searchContainer} >
                 {isBack ? goBack : null}
-                <Text style={{fontWeight:'bold',fontSize:18,flex:5}}>{props.title}</Text>
+                <TouchableOpacity style={{backgroundColor:'white'}} onPress={()=>{navigate('Home')}} >
+                    <Image source={require('../../public/logo/logo.png')} />
+                </TouchableOpacity>
+               
             </View>
             <TouchableOpacity onPress={()=>props.navigation.navigate('Search')} style={styles.searchIconContainer}>
                 <Image style={styles.searchIcon} source={{uri:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Vector_search_icon.svg/945px-Vector_search_icon.svg.png"}}></Image>

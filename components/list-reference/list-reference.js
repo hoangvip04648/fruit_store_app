@@ -14,7 +14,7 @@ export default function ListReference(props){
     useEffect(()=>{
         setReferences(props.references);
 
-    })
+    },[props.references])
     return(
         <View style={styles.container}>
             <View style={styles.headerContainer}>

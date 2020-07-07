@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native'
+import { Right } from 'native-base'
 
 export const styles = StyleSheet.create({
     productInformationContainer:{
@@ -28,12 +29,14 @@ export const styles = StyleSheet.create({
     container:{
         flex:1,
         marginTop:0,
+        backgroundColor:"white"
     },
     productImg:{
         width:200,
         height:200,
     },
     name:{
+        marginTop:10,
         fontSize:25,
         color:"#696969",
         fontWeight:'bold'
@@ -73,7 +76,7 @@ export const styles = StyleSheet.create({
         justifyContent:'center', 
         marginHorizontal:30, 
         flexDirection:'row', 
-        marginBottom:10
+        marginBottom:10,
     },
     contentSize:{ 
         justifyContent:'center', 
@@ -108,5 +111,45 @@ export const styles = StyleSheet.create({
     commentContainer:{
       
     },
+    increase:{
+      
 
+        height:40,
+        width:40,
+        borderTopRightRadius:10,
+        borderBottomRightRadius:10,
+        borderColor:'#778899',
+        borderWidth:2,
+        marginHorizontal:3,
+        backgroundColor:'#00BFFF',
+        borderColor:'#00BFFF',
+        justifyContent:"center",
+        alignItems:"center",
+        marginLeft:0,
+        marginRight:100
+    },
+    reduction:{
+        height:40,
+        width:40,
+        borderTopLeftRadius:10,
+        borderBottomLeftRadius:10,
+        borderColor:'#778899',
+        borderWidth:2,
+        marginHorizontal:3,
+        backgroundColor:'#00BFFF',
+        borderColor:'#00BFFF',
+        justifyContent:"center",
+        alignItems:"center",
+        marginRight:0,
+        marginLeft:100
+    },
+    inputNumberItem:{
+        borderTopWidth:1,
+        borderBottomWidth:1,
+        borderColor:'#ccc',
+        height:40,
+        width:70,
+        textAlign:"center",
+        color:'black'
+    }
 }); 

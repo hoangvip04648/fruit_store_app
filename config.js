@@ -1,1 +1,1 @@
-export const rootUrl = 'http://192.168.2.29:9000';
+export const rootUrl = 'http://118.69.175.73:9000';
